@@ -7,16 +7,20 @@ public class Point {
 	}
 	
 	public void render(Graphics g, World w) {
-		double dist = getDist(w);
+		double dist = getDist(w,g);
 		g.drawOval((int)(pos.x-dist), (int)(pos.y-dist), (int)dist*2, (int)dist*2);
 		g.fillOval((int)pos.x-2, (int)pos.y-2, 4, 4);
 	}
 	
-	public double getDist(World w) {
-		double[] dists = new double[w.circs.length];
+	public double getDist(World w,Graphics g) {
+		double[] dists = new double[w.circs.length+w.walls.length];
 		for (var i = 0; i < w.circs.length; i++) {
 			Circle circ = w.circs[i];
 			double dist = circ.getDist(pos);
+			dists[i] = dist;
+		}for (var i = w.circs.length; i < w.circs.length+w.walls.length; i++) {
+			Wall wall = w.walls[i-w.circs.length];
+			double dist = wall.getDist(pos,g);
 			dists[i] = dist;
 		}
 		double dist = Sort.getMin(dists);

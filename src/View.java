@@ -12,8 +12,8 @@ public class View {
 	}
 	
 	public void render(Graphics g, World w) {
-		int a = 360;
-		double r1 = (360/a);
+		int a = 1440;
+		double r1 = 0.25;
 		Vector[] endpoints = new Vector[a];
 		Vector v = new Vector(1,0);
 		v.rotate(0.1);
