@@ -9,7 +9,11 @@ public class CGenerator {
 	}public static Wall[] getWalls(int W,int H,int n) {
 		Wall[] wList = new Wall[n];
 		for(int i = 0; i<wList.length; i++) {
-			wList[i] = new Wall(new Vector((int)(Math.random() * (W)),(int)(Math.random() * (H))),new Vector((int)(Math.random() * (500)),(int)(Math.random() * (500))));
+			if (Math.random()>0.5) {
+				wList[i] = new Mirror(new Vector((int)(Math.random() * (W)),(int)(Math.random() * (H))),new Vector((int)(Math.random() * (500)-250),(int)(Math.random() * (500)-250)));
+			}else {
+				wList[i] = new Wall(new Vector((int)(Math.random() * (W)),(int)(Math.random() * (H))),new Vector((int)(Math.random() * (500)-250),(int)(Math.random() * (500)-250)));
+			}
 		}
 		return wList;
 	}

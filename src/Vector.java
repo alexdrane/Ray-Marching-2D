@@ -1,4 +1,3 @@
-
 public class Vector {
 	double x, y;
 	
@@ -22,6 +21,11 @@ public class Vector {
 		y  = y*Math.cos(a)+x*Math.sin(a);
 	}
 	
+	public Vector getRotate(double r) {
+		double a = (r/180)*Math.PI;
+		return new Vector(x*Math.cos(a)-y*Math.sin(a), y*Math.cos(a)+x*Math.sin(a));
+	}
+	
 	public void scaleTo(double l) {
 		double s = l/getLength();
 		scale(s);
@@ -38,6 +42,26 @@ public class Vector {
 	}
 	public Vector add(Vector v) {
 		return new Vector(x+v.x, y+v.y);
+	}
+	
+	public Vector rotate_rad(double a) {
+		return new Vector((x*Math.cos(a))-(y*Math.sin(a)),(y*Math.cos(a))+(x*Math.sin(a)));
+
+	}
+	public double getRadian() {
+		double radian ;
+		Vector s = this.scaleToV(1);
+		radian = Math.asin(s.y);
+		if (s.x < 0) {
+			radian=Math.PI-radian;
+		}
+		if (radian < 0) radian+=Math.PI*2;
+		return radian;
+	}
+	
+	public void print() {
+		System.out.println(this.x);
+		System.out.println(this.y);
 	}
 
 }

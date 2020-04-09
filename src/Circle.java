@@ -19,5 +19,8 @@ public class Circle {
 		g.setColor(Color.WHITE);
 		g.fillOval((int)pos.x-r, (int)pos.y-r, r*2, r*2);
 	}
+	public Ray getRay(Vector incident,Vector p) {
+		return null;
+	}
 	
 }

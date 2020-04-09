@@ -12,25 +12,24 @@ public class View {
 	}
 	
 	public void render(Graphics g, World w) {
-		int a = 1440;
-		double r1 = 0.25;
-		Vector[] endpoints = new Vector[a];
-		Vector v = new Vector(1,0);
-		v.rotate(0.1);
+		int a = 360;
+		double r1 = 360/a;
+		//Vector[] endpoints = new Vector[a];
+		Vector v = new Vector(0,1);
 		for (var i = 0; i < a; i++) {
-			Ray r = new Ray(position);
-			r.render(g, w, v.add(position));
-			endpoints[i] = r.getEnd(w, v.add(position));
+			Ray r = new Ray(position,v);
+			r.render(g, w, 0);
+			//endpoints[i] = r.getEnd(w);
 			//System.out.println(endpoints[i].x);
 			//System.out.println(endpoints[i].y);
 			v.rotate(r1);
 		}
-		int[] xArr = new int[a];
-		int[] yArr = new int[a];
-		for (var i = 0; i < endpoints.length; i++) {
-			xArr[i] = (int) endpoints[i].x;
-			yArr[i] = (int) endpoints[i].y;
-		}
+		//int[] xArr = new int[a];
+		//int[] yArr = new int[a];
+		//for (var i = 0; i < endpoints.length; i++) {
+			//xArr[i] = (int) endpoints[i].x;
+			//yArr[i] = (int) endpoints[i].y;
+		//}
 		//draw(g,xArr,yArr);
 	}
 	

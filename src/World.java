@@ -17,5 +17,18 @@ public class World {
 			walls[i].render(g);
 		}
 	}
+	
+	public Ray getRay(Point pt,Vector incident){
+		for (var i = 0; i<circs.length;i++) {
+			if (circs[i].getDist(pt.pos)<0.1) {
+				return circs[i].getRay(incident,pt.pos);
+			}
+		}for (var i = 0; i<walls.length;i++) {
+			if (walls[i].getDist(pt.pos)<0.1) {
+				return walls[i].getRay(incident,pt.pos);
+			}
+		}
+		return null;
+	}
 
 }

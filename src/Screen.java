@@ -11,11 +11,11 @@ public class Screen extends JPanel implements MouseMotionListener{
 	
 	private static final long serialVersionUID = -616365487435413161L;
 	static int W = 1800, H = 900;
-	Circle[] cList = CGenerator.getCircs(W,H,5);
-	Wall[] wList = CGenerator.getWalls(W,H,10);
+	Circle[] cList = CGenerator.getCircs(W,H,2);
+	Wall[] wList = CGenerator.getWalls(W,H,20);
 	World world = new World(cList,wList);
-	//Ray ray = new Ray(new Vector(0,0));
-	View view = new View(new Vector(500,300));
+	Ray ray = new Ray(new Vector(0,0),new Vector(-1,-1));
+	//View view = new View(new Vector(500,300));
 	static JFrame frame;
 	int x,y;
 	public Screen() {
@@ -35,9 +35,10 @@ public class Screen extends JPanel implements MouseMotionListener{
 	public void paint(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 2000, 2000);
-		//ray.render(g, world, new Vector(x,y));
-		view.render(g, world);
-		view.updatePos(new Vector(x,y));
+	    ray.update_direction(new Vector(x-ray.origin.x,y-ray.origin.y));
+		ray.render(g, world,0);
+		//view.render(g, world);
+		//view.updatePos(new Vector(x,y));
 		world.render(g);
 		repaint();
 	}

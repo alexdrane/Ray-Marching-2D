@@ -4,16 +4,20 @@ import java.awt.Graphics;
 public class Wall {
 	Vector origin;
 	Vector extent;
+	Vector normal;
 	
 	public Wall(Vector o, Vector e) {
 		origin = o;
 		extent = e;
+		normal = e.getRotate(90);;
 	}
 	
 	public void render(Graphics g) {
 		g.setColor(Color.WHITE);
 		Vector end = origin.add(extent);
 		g.drawLine((int)origin.x, (int)origin.y, (int)end.x,(int)end.y);
+		//Vector end2 = origin.add(normal.scaleToV(10)));
+		//g.drawLine((int)origin.x, (int)origin.y, (int)end2.x,(int)end2.y);
 	}
 	
 	public double getDist(Vector p) {
@@ -54,6 +58,13 @@ public class Wall {
 				dist = Math.min(end_dist,origin_dist);
 			}
 		};
+		if (dist < 0) {
+			dist = -dist;
+		}
 		return dist;
+	}
+	
+	public Ray getRay(Vector incident,Vector p) {
+		return null;
 	}
 }
